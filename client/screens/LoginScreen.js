@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput, TouchableOpacity, StyleSheet, Alert} from 'react-native';
+import {View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Image} from 'react-native';
 
 export default function LoginScreen({navigation}) {
     const [email, setEmail] = useState('');
@@ -24,7 +24,7 @@ export default function LoginScreen({navigation}) {
     };
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>ShuttR</Text>
+            <Image source={require('../assets/ShuttrLogo1.png')} style={styles.logo} resizeMode="contain" />
 
             <TextInput
                 style={styles.input}
@@ -59,10 +59,10 @@ const styles = StyleSheet.create({
             padding: 20,
             backgroundColor: '#fff',
         },
-        title: {
-            fontSize: 32,
-            fontWeight: 'bold',
-            textAlign: 'center',
+        logo: {
+            width: 200,
+            height: 200,
+            alignSelf: 'center',
             marginBottom: 50,
         },
         input: {
