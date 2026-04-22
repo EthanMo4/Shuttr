@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
             flex: 1,
             justifyContent: 'center',
             padding: 20,
-            backgroundColor: '#fff',
+            backgroundColor: '#fffdf6',
         },
         logo: {
             width: 200,
@@ -74,19 +74,19 @@ const styles = StyleSheet.create({
             fontSize: 16,
         },
         button: {
-            backgroundColor: '#007AFF',
+            backgroundColor: '#00cfff',
             padding: 14,
             borderRadius: 8,
             alignItems: 'center',
             marginBottom: 16,
         },
         buttonText: {
-            color: '#fff',
+            color: '#fffdf6',
             fontSize: 16,
             fontWeight: 'bold',
         },
         link: {
-            color: '#007AFF',
+            color: '#00cfff',
             textAlign: 'center',
             fontSize: 14,
         },
