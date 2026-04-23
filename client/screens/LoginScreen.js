@@ -26,7 +26,7 @@ export default function LoginScreen({navigation}) {
     };
     return (
         <View style={styles.container}>
-            <Image source={require('../assets/ShuttrLogo1.png')} style={styles.logo} resizeMode="contain" />
+            <Image source={require('../assets/shuttrIcon.png')} style={styles.logo} resizeMode="contain" />
 
             <TextInput
                 style={styles.input}
@@ -47,9 +47,12 @@ export default function LoginScreen({navigation}) {
                 <Text style={styles.buttonText}>Login</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-                <Text style={styles.link}>Don't have an account? Register</Text>
-            </TouchableOpacity>
+            <View style={styles.registerRow}>
+                <Text style={styles.helperText}>Don't have an account? </Text>
+                <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+                    <Text style={styles.link}>Register</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 }
@@ -62,14 +65,19 @@ const styles = StyleSheet.create({
             backgroundColor: '#fffdf6',
         },
         logo: {
-            width: 200,
-            height: 200,
+            width: 150,
+            height: 150,
             alignSelf: 'center',
-            marginBottom: 50,
+            marginBottom: 40,
+            shadowColor: '#000',
+            shadowOpacity: 0.08,
+            shadowRadius: 12,
+            shadowOffset: { width: 0, height: 4 },
+            elevation: 6,
         },
         input: {
             borderWidth: 1,
-            borderColor: '#ccc',
+            borderColor: '#888',
             borderRadius: 8,
             padding: 12,
             marginBottom: 16,
@@ -91,5 +99,16 @@ const styles = StyleSheet.create({
             color: '#00cfff',
             textAlign: 'center',
             fontSize: 14,
+        },
+        helperText: {
+            color: '#888',
+            textAlign: 'center',
+            fontSize: 14,
+        },
+        registerRow: {
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginTop: 16,
         },
     });
