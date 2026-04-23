@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Image} from 'react-native';
 
-export default function RegisterScreen() {
+export default function RegisterScreen({navigation}) {
     const [forename, setForename] = useState('');
     const [surname, setSurname] = useState('');
     const [email, setEmail] = useState('');
@@ -15,7 +15,9 @@ export default function RegisterScreen() {
             });
             const data = await response.json();
             if (response.ok) {
-                Alert.alert('Success', data.msg);
+                Alert.alert('Success', data.msg, [
+                    {text: 'OK', onPress: () => navigation.navigate('Login')}
+                ]);
             } else {
                 Alert.alert('Error',data.msg);
             }

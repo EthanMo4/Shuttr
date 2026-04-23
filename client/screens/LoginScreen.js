@@ -8,13 +8,15 @@ export default function LoginScreen({navigation}) {
     const handleLogin = async () => {
         try {
             const response = await fetch('http://10.0.0.216:3000/user/login', {
-                method: 'Post',
+                method: 'POST',
                 headers: { 'Content-Type': 'application/json'},
                 body: JSON.stringify({email, password}),
             });
             const data = await response.json();
             if (response.ok) {
-                Alert.alert('Success', data.msg);
+                Alert.alert('Success', data.msg, [
+                    {text: 'OK', onPress: () => navigation.navigate('Gallery')}
+                ]);
             } else {
                 Alert.alert('Error',data.msg);
             }
