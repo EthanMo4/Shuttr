@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     },
     input: {
         borderWidth: 1,
-        borderColor: '#ccc',
+        borderColor: '#888',
         borderRadius: 8,
         padding: 12,
         marginBottom: 20,
