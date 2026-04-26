@@ -15,7 +15,7 @@ export default function LoginScreen({navigation}) {
             const data = await response.json();
             if (response.ok) {
                 Alert.alert('Success', data.msg, [
-                    {text: 'OK', onPress: () => navigation.navigate('Gallery')}
+                    {text: 'OK', onPress: () => navigation.navigate('MainTab')}
                 ]);
             } else {
                 Alert.alert('Error',data.msg);
