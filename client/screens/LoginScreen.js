@@ -17,6 +17,7 @@ export default function LoginScreen({navigation}) {
             if (response.ok) {
                 await AsyncStorage.setItem('forename', data.forename);
                 await AsyncStorage.setItem('surname', data.surname);
+                await AsyncStorage.setItem('token', data.token);  
                 Alert.alert('Success', data.msg, [
                     {text: 'OK', onPress: () => navigation.navigate('MainTab')}
                 ]);

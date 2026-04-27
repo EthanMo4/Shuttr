@@ -5,13 +5,14 @@ export default function RegisterScreen({navigation}) {
     const [forename, setForename] = useState('');
     const [surname, setSurname] = useState('');
     const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const handleRegister = async () => {
         try {
             const response = await fetch('http://10.0.0.216:3000/user/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json'},
-                body: JSON.stringify({forename, surname, email, password}),
+                body: JSON.stringify({forename, surname, email, username, password}),
             });
             const data = await response.json();
             if (response.ok) {
@@ -47,6 +48,13 @@ export default function RegisterScreen({navigation}) {
                 onChangeText={setEmail}
                 autoCapitalize="none"
                 keyboardType="email-address"
+            />
+            <TextInput
+                style={styles.input}
+                placeholder='Username'
+                value={username}
+                onChangeText={setUsername}
+                autoCapitalize="none"
             />
             <TextInput
                 style={styles.input}

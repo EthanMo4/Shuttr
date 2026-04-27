@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {View, Text, Image, TextInput, TouchableOpacity, StyleSheet} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as ImagePicker from 'expo-image-picker';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function EditLensScreen({ route, navigation }) {
     const { bio: initialBio, avatar: initialAvatar, username: initialUsername, userName, onSave } = route.params;
@@ -21,7 +22,16 @@ export default function EditLensScreen({ route, navigation }) {
         }
     };
 
-    const handleSave = () => {
+    const handleSave = async () => {
+        const token = await AsyncStorage.getItem('token');
+        await fetch('http://10.0.0.216:3000/user/profile', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ username, bio, avatar })
+        });
         onSave(bio, avatar, username);
         navigation.goBack();
     };

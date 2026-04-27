@@ -19,9 +19,22 @@ const userSchema = mongoose.Schema({
         required: true,
         unique: true
     },
+    username: {
+        type: String,
+        required: true,
+        unique: true
+    },
     account_created: {
         type: Date,
         default: Date.now
+    },
+    bio: {
+        type: String,
+        default: 'Tell us about yourself...'
+    },
+    avatar: {
+        type: String,
+        default: null
     }
 });
 

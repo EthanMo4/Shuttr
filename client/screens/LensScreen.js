@@ -33,12 +33,20 @@ export default function LensScreen({navigation}) {
     const [userName, setUserName] = useState('User');
 
     useEffect(() => {
-        const loadName = async () => {
-            const forename = await AsyncStorage.getItem('forename') ?? '';
-            const surname = await AsyncStorage.getItem('surname') ?? '';
-            if (forename || surname) setUserName(`${forename} ${surname}`.trim());
+        const loadProfile = async () => {
+            const token = await AsyncStorage.getItem('token');
+            const response = await fetch('http://10.0.0.216:3000/user/profile', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (response.ok) {
+                const user = await response.json();
+                setBio(user.bio);
+                setAvatar(user.avatar);
+                setUsername(user.username);
+                setUserName(`${user.forename} ${user.surname}`.trim());
+            }
         };
-        loadName();
+        loadProfile();
     }, []);
 
     return (
