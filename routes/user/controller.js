@@ -12,7 +12,7 @@ module.exports = {
             const isMatch = await user.comparePassword(req.body.password);
             if (isMatch) {
                 let token = jwt.sign({ id: user._id }, config.secret, { expiresIn: 86400 });
-                res.status(200).json({ msg: 'Login successful', token });
+                res.status(200).json({ msg: 'Login successful', token, forename: user.forename, surname: user.surname });
             } else {
                 res.status(401).json({ msg: 'Invalid email or password' });
             }

@@ -1,5 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import {Feather} from '@expo/vector-icons';
 import {View, Text, TouchableOpacity, StyleSheet, FlatList, Image} from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import PostCard from '../components/PostCard';
 
 const posts = [
@@ -23,16 +26,38 @@ const posts = [
     }
 ];
 
-export default function LensScreen() {
+export default function LensScreen({navigation}) {
+    const [bio, setBio] = useState('Tell us about yourself...');
+    const [avatar, setAvatar] = useState(null);
+    const [username, setUsername] = useState('@EthMorr4');
+    const [userName, setUserName] = useState('User');
+
+    useEffect(() => {
+        const loadName = async () => {
+            const forename = await AsyncStorage.getItem('forename') ?? '';
+            const surname = await AsyncStorage.getItem('surname') ?? '';
+            if (forename || surname) setUserName(`${forename} ${surname}`.trim());
+        };
+        loadName();
+    }, []);
+
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <View style={styles.profileHeader}>
-                <View style={styles.avatar} />
+                <TouchableOpacity 
+                    style={styles.editButton} 
+                    onPress={() => navigation.navigate('EditLens', { bio, avatar, username, userName, onSave: (newBio, newAvatar, newUsername) => { setBio(newBio); setAvatar(newAvatar); setUsername(newUsername); } })}>
+                    <Feather name="edit-2" size={18} color="#888" />
+                </TouchableOpacity>
+                {avatar
+                    ? <Image source={{ uri: avatar }} style={styles.avatar} />
+                    : <Image source={{ uri: `https://ui-avatars.com/api/?name=${encodeURIComponent(userName)}&background=00cfff&color=fff&size=96` }} style={styles.avatar} />
+                }
 
                 <Text style={styles.name}>My Lens</Text>
-                <Text style={styles.username}>@EthMorr4</Text>
+                <Text style={styles.username}>{username}</Text>
 
-                <Text style={styles.bio}>Just a guy who loves photography and coding!</Text>
+                <Text style={styles.bio}>{bio}</Text>
 
                 <View style={styles.statsRow}>
                     <View style={styles.stat}>
@@ -63,7 +88,7 @@ export default function LensScreen() {
                 )}
                 contentContainerStyle={styles.grid}
             />
-        </View>
+        </SafeAreaView>
     );
 }
 
@@ -71,6 +96,11 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
+    },
+    editButton: {
+        position: 'absolute',
+        top: 50,
+        right: 20,
     },
     profileHeader: {
         alignItems: 'center',

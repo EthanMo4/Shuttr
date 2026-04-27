@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, StyleSheet, FlatList, Image} from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import PostCard from '../components/PostCard';
 
 const posts = [
@@ -25,14 +26,14 @@ const posts = [
 
 export default function GalleryScreen() {
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <Image source={require('../assets/shuttrIcon.png')} style={styles.logo} resizeMode="contain" />    
             <FlatList
                 data={posts}
                 keyExtractor={(item) => item.id}
                 renderItem={({item}) => <PostCard post={item} />}
             />
-        </View>
+        </SafeAreaView>
     );
 }
 

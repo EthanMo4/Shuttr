@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Image} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function LoginScreen({navigation}) {
     const [email, setEmail] = useState('');
@@ -14,6 +15,8 @@ export default function LoginScreen({navigation}) {
             });
             const data = await response.json();
             if (response.ok) {
+                await AsyncStorage.setItem('forename', data.forename);
+                await AsyncStorage.setItem('surname', data.surname);
                 Alert.alert('Success', data.msg, [
                     {text: 'OK', onPress: () => navigation.navigate('MainTab')}
                 ]);
