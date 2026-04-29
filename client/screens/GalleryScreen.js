@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {View, Text, TouchableOpacity, StyleSheet, FlatList, Image} from 'react-native';
+import React from 'react';
+import {StyleSheet, FlatList} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import PostCard from '../components/PostCard';
 
@@ -27,7 +27,6 @@ const posts = [
 export default function GalleryScreen() {
     return (
         <SafeAreaView style={styles.container}>
-            <Image source={require('../assets/shuttrIcon.png')} style={styles.logo} resizeMode="contain" />    
             <FlatList
                 data={posts}
                 keyExtractor={(item) => item.id}
@@ -40,19 +39,6 @@ export default function GalleryScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
-        paddingTop: 50,
-    },
-    logo: {
-        width: 50,
-        height: 50,
-        alignSelf: 'flex-start',
-        marginLeft: 20,
-    },
-    header: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        paddingHorizontal: 20,
-        marginBottom: 10,
+        backgroundColor: '#fffdf6',
     },
 });

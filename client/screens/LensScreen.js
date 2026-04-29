@@ -103,7 +103,7 @@ export default function LensScreen({navigation}) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#fffdf6',
     },
     editButton: {
         position: 'absolute',
