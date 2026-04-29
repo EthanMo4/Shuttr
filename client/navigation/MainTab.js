@@ -29,7 +29,7 @@ export default function MainTab() {
                 headerShadowVisible: false,
                 headerStyle: {
                     backgroundColor: '#fffdf6',
-                    height: insets.top,
+                    height: 55 + insets.top,
                 },
                 headerTitleAlign: 'center',
                 headerTitle: () => (
@@ -40,7 +40,7 @@ export default function MainTab() {
                 headerTitleContainerStyle: {
                     justifyContent: 'center',
                     alignItems: 'center',
-                    top: 15,
+                    top: 0,
                     bottom: 0,
                 },
                 tabBarShowLabel: false,
@@ -53,7 +53,7 @@ export default function MainTab() {
                 name="Gallery"
                 component={GalleryScreen}
                 options={{
-                    tabBarIcon: ({ color, size }) => <Feather name="image" size={size} color={color} />,
+                    tabBarIcon: ({ color, size }) => <Feather name="home" size={size} color={color} />,
                 }}
             />
 

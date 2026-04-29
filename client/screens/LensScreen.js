@@ -50,17 +50,21 @@ export default function LensScreen({navigation}) {
     }, []);
 
     return (
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
             <View style={styles.profileHeader}>
-                <TouchableOpacity 
-                    style={styles.editButton} 
-                    onPress={() => navigation.navigate('EditLens', { bio, avatar, username, userName, onSave: (newBio, newAvatar, newUsername) => { setBio(newBio); setAvatar(newAvatar); setUsername(newUsername); } })}>
-                    <Feather name="edit-2" size={18} color="#888" />
-                </TouchableOpacity>
-                {avatar
-                    ? <Image source={{ uri: avatar }} style={styles.avatar} />
-                    : <Image source={{ uri: `https://ui-avatars.com/api/?name=${encodeURIComponent(userName)}&background=00cfff&color=fff&size=96` }} style={styles.avatar} />
-                }
+                <View style={styles.avatarWrap}>
+                    {avatar
+                        ? <Image source={{ uri: avatar }} style={styles.avatar} />
+                        : <Image source={{ uri: `https://ui-avatars.com/api/?name=${encodeURIComponent(userName)}&background=00cfff&color=fff&size=96` }} style={styles.avatar} />
+                    }
+
+                    <TouchableOpacity
+                        style={styles.editButton}
+                        onPress={() => navigation.navigate('EditLens', { bio, avatar, username, userName, onSave: (newBio, newAvatar, newUsername) => { setBio(newBio); setAvatar(newAvatar); setUsername(newUsername); } })}
+                    >
+                        <Feather name="edit-2" size={14} color="#fff" />
+                    </TouchableOpacity>
+                </View>
 
                 <Text style={styles.name}>My Lens</Text>
                 <Text style={styles.username}>{username}</Text>
@@ -96,7 +100,7 @@ export default function LensScreen({navigation}) {
                 )}
                 contentContainerStyle={styles.grid}
             />
-        </SafeAreaView>
+        </View>
     );
 }
 
@@ -105,14 +109,26 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fffdf6',
     },
+    avatarWrap: {
+        position: 'relative',
+        marginBottom: 14,
+    },
     editButton: {
         position: 'absolute',
-        top: 50,
-        right: 20,
+        right: -4,
+        bottom: -4,
+        width: 28,
+        height: 28,
+        borderRadius: 14,
+        backgroundColor: '#00cfff',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 2,
+        borderColor: '#fffdf6',
     },
     profileHeader: {
         alignItems: 'center',
-        paddingTop: 70,
+        paddingTop: 40,
         paddingHorizontal: 20,
         paddingBottom: 24,
         backgroundColor: '#fffdf6',
@@ -122,7 +138,6 @@ const styles = StyleSheet.create({
         height: 96,
         borderRadius: 48,
         backgroundColor: '#00cfff',
-        marginBottom: 14,
     },
     name: {
         fontSize: 26,

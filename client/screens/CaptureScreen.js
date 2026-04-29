@@ -41,7 +41,7 @@ export default function CaptureScreen() {
     };
 
     return (
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
             <TouchableOpacity style={styles.imagePicker} onPress={pickImage}>
                 {image
                     ? <Image source={{ uri: image }} style={styles.preview} />
@@ -59,7 +59,7 @@ export default function CaptureScreen() {
             <TouchableOpacity style={styles.button} onPress={handlePost}>
                 <Text style={styles.buttonText}>Post</Text>
             </TouchableOpacity>
-        </SafeAreaView>
+        </View>
     );
 }
 

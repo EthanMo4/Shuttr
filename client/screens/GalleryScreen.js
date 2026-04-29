@@ -26,13 +26,11 @@ const posts = [
 
 export default function GalleryScreen() {
     return (
-        <SafeAreaView style={styles.container}>
-            <FlatList
-                data={posts}
-                keyExtractor={(item) => item.id}
-                renderItem={({item}) => <PostCard post={item} />}
-            />
-        </SafeAreaView>
+        <FlatList
+            data={posts}
+            keyExtractor={(item) => item.id}
+            renderItem={({item}) => <PostCard post={item} />}
+        />
     );
 }
 
